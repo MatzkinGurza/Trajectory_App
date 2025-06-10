@@ -12,7 +12,6 @@ declaration  : variable | statement | function;
 
 statement    : lineNumber codFunc detail* LINE_END;
 
-// o comando de interpolação circular não necessariamente recebe o raio
 detail       : coord | delta_center | stop_ms; 
 
 lineNumber   : N INT;
@@ -21,11 +20,11 @@ codFunc      : GCODE;
 
 coord        : DIR MINUS? (FLOAT | INT); 
 
-delta_center : DELTA MINUS? (FLOAT | INT); // clockwise - removidos parênteses desnecessários
+delta_center : DELTA MINUS? (FLOAT | INT); 
 
 stop_ms      : P INT;
 
-variable     : VAR ID ASSIGN MINUS? (FLOAT | INT) LINE_END; // Adicionado LINE_END
+variable     : VAR ID ASSIGN MINUS? (FLOAT | INT) LINE_END; 
 
 function     : FUNC ID LPAREN parameterList? RPAREN LBRACE declaration* RBRACE;
 

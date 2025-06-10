@@ -152,6 +152,8 @@ class GCodeInterpreter(GCodeListener):
         details = list(ctx.detail())
         Xc, Yc, R, ang_final, ang_inicial   = self.extract_circ_details(details)
         if Xc is not None and Yc is not None and ang_final is not None and ang_inicial is not None:
+            if np.isclose(ang_final, ang_inicial):  # caso especial: arco completo
+                ang_final += 2 * np.pi
             # circular conter-clockwise interpol function
             if ang_final < ang_inicial:
                 ang_final += 2*np.pi
